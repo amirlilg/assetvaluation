@@ -1,0 +1,12 @@
+# virtual environment
+.venv/
+
+# UV and Python
+.python-version
+
+# database
+instance/
+
+# Optional (if applicable)
+__pycache__/
+*.py[cod]

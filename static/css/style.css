@@ -1,0 +1,22 @@
+/* Custom CSS if needed, otherwise Tailwind handles most of it. */
+/* Example: For fine-tuning elements not easily done with Tailwind classes directly */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Specific styling for profit/loss */
+.profit {
+    color: #10B981; /* Tailwind green-500 */
+    font-weight: 600;
+}
+
+.loss {
+    color: #EF4444; /* Tailwind red-500 */
+    font-weight: 600;
+}
+
+.even {
+    color: #4B5563; /* Tailwind gray-600 */
+    font-weight: 600;
+}

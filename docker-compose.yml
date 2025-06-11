@@ -1,0 +1,31 @@
+services:
+  web:
+    build: . # Build the Flask app image from the current directory (where Dockerfile is)
+    ports:
+      - "5000:5000" # Map host port 5000 to container port 5000
+    environment:
+      # DATABASE_URL uses the service name 'db' as the hostname for inter-container communication
+      # Ensure these match the POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB in the 'db' service
+      DATABASE_URL: postgresql://user:password@db:5432/asset_db
+    depends_on:
+      - db # Ensure the database service starts before the web service
+    networks:
+      - asset-tracker-network # Attach to our custom network
+
+  db:
+    image: postgres:13 # Use the official PostgreSQL 13 image
+    environment:
+      POSTGRES_DB: asset_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - db-data:/var/lib/postgresql/data # Mount a named volume for persistent database data
+    networks:
+      - asset-tracker-network # Attach to our custom network
+
+volumes:
+  db-data: # Define the named volume for database persistence
+
+networks:
+  asset-tracker-network: # Define a custom network for our services to communicate on
+    driver: bridge # Default driver, but good to explicitly state
